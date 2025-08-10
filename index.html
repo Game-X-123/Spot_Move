@@ -334,7 +334,6 @@
     <div class="top-alert" id="top-alert"></div>
     
     <div class="container">
-        <div class="debug">小球移动路径记录器 v2.0</div>
         <h1>小球移动路径记录器</h1>
         
         <div class="step-counter">移动步数: <span id="step-count">0</span></div>
@@ -355,26 +354,13 @@
             
             <div class="action-btns">
                 <button class="action-btn" id="btn-undo">撤回</button>
-                <button class="action-btn" id="btn-reset">重置</button>
                 <button class="action-btn" id="btn-output">输出路径</button>
+                <button class="action-btn" id="btn-reset">重置</button>
             </div>
             
             <div class="keyboard-hint">
                 键盘控制: W(上) S(下) A(左) D(右)
             </div>
-        </div>
-        
-        <div class="instructions">
-            <h3>游戏说明:</h3>
-            <ul>
-                <li>点击任意格子放置<span class="highlight">蓝色小球</span>（初始位置）</li>
-                <li>使用方向键控制小球移动，每次只能移动到相邻格子</li>
-                <li>向边界外移动无效，会收到警告</li>
-                <li><span class="highlight">虚线圆圈</span>表示上一步的位置</li>
-                <li>点击"输出路径"可查看移动序列(1=上, 2=下, 3=左, 4=右)</li>
-                <li>新增<span class="highlight">撤回</span>功能：可撤销上一步操作</li>
-                <li>新增<span class="highlight">重置</span>功能：清空路径数据，重新开始</li>
-            </ul>
         </div>
     </div>
     
