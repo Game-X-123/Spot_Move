@@ -62,16 +62,31 @@
         }
         
         .board {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            grid-template-rows: repeat(7, 1fr);
-            gap: 1px;
+            position: relative;
             width: 100%;
-            aspect-ratio: 1/1;
             max-width: 450px;
             background: #7f8c8d;
             border-radius: 8px;
             overflow: hidden;
+        }
+        
+        .board-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-template-rows: repeat(7, 1fr);
+            gap: 1px;
+        }
+        
+        /* 确保棋盘是正方形 */
+        .board::before {
+            content: '';
+            display: block;
+            padding-bottom: 100%; /* 关键修复：使用padding-bottom创建正方形 */
         }
         
         .board-cell {
@@ -559,6 +574,11 @@
                 boardElement.innerHTML = '';
                 board = [];
                 
+                // 创建内部容器用于网格布局
+                const boardInner = document.createElement('div');
+                boardInner.className = 'board-inner';
+                boardElement.appendChild(boardInner);
+                
                 for (let i = 0; i < boardSize; i++) {
                     for (let j = 0; j < boardSize; j++) {
                         const cell = document.createElement('div');
@@ -581,7 +601,7 @@
                             }
                         });
                         
-                        boardElement.appendChild(cell);
+                        boardInner.appendChild(cell);
                         board.push(cell);
                     }
                 }
@@ -783,12 +803,6 @@
                     case 'd': moveBall('right'); break;
                 }
             });
-            
-            // 移动端触控事件
-            document.getElementById('touch-up').addEventListener('click', () => moveBall('up'));
-            document.getElementById('touch-down').addEventListener('click', () => moveBall('down'));
-            document.getElementById('touch-left').addEventListener('click', () => moveBall('left'));
-            document.getElementById('touch-right').addEventListener('click', () => moveBall('right'));
             
             // 初始化游戏
             initializeBoard();
