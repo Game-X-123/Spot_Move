@@ -27,7 +27,7 @@
         .container {
             background: rgba(0, 0, 0, 0.7);
             border-radius: 20px;
-            padding: 30px;
+            padding: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             width: 100%;
             max-width: 700px;
@@ -36,53 +36,61 @@
         }
         
         h1 {
-            margin-bottom: 20px;
-            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-size: 2rem;
             color: #ffcc00;
             text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
         }
         
         .step-counter {
-            font-size: 1.8rem;
-            margin: 20px 0;
+            font-size: 1.5rem;
+            margin: 15px 0;
             color: #4dff4d;
             font-weight: bold;
         }
         
         .board-container {
-            display: inline-block;
+            display: flex;
+            justify-content: center;
             background: #2c3e50;
-            padding: 20px;
+            padding: 15px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            margin: 20px auto;
+            margin: 15px auto;
+            width: 100%;
+            max-width: 500px;
         }
         
         .board {
-            border-collapse: collapse;
-            margin: 0 auto;
-            background: #34495e;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-template-rows: repeat(7, 1fr);
+            gap: 1px;
+            width: 100%;
+            aspect-ratio: 1/1;
+            max-width: 450px;
+            background: #7f8c8d;
+            border-radius: 8px;
+            overflow: hidden;
         }
         
-        .board td {
-            width: 50px;
-            height: 50px;
-            border: 2px solid #7f8c8d;
+        .board-cell {
             position: relative;
-            cursor: pointer;
+            background: #34495e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: all 0.3s;
         }
         
-        .board td:hover {
+        .board-cell:hover {
             background: rgba(52, 152, 219, 0.2);
         }
         
         .ball {
             position: absolute;
-            top: 5px;
-            left: 5px;
-            width: 40px;
-            height: 40px;
+            width: 80%;
+            height: 80%;
             background: #3498db;
             border-radius: 50%;
             box-shadow: 0 0 10px #3498db;
@@ -91,17 +99,15 @@
         
         .trace {
             position: absolute;
-            top: 5px;
-            left: 5px;
-            width: 40px;
-            height: 40px;
+            width: 80%;
+            height: 80%;
             border: 2px dashed #e74c3c;
             border-radius: 50%;
             z-index: 1;
         }
         
         .controls {
-            margin: 25px 0;
+            margin: 20px 0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -111,14 +117,14 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 8px;
+            margin-bottom: 15px;
         }
         
         .control-btn {
-            width: 70px;
-            height: 70px;
-            font-size: 24px;
+            width: 60px;
+            height: 60px;
+            font-size: 20px;
             border: none;
             border-radius: 50%;
             background: #3498db;
@@ -162,13 +168,15 @@
         
         .action-btns {
             display: flex;
-            gap: 15px;
-            margin-top: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+            justify-content: center;
         }
         
         .action-btn {
-            padding: 12px 25px;
-            font-size: 18px;
+            padding: 10px 20px;
+            font-size: 16px;
             border: none;
             border-radius: 50px;
             background: #9b59b6;
@@ -176,6 +184,9 @@
             cursor: pointer;
             transition: all 0.3s;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            flex: 1;
+            min-width: 100px;
+            max-width: 150px;
         }
         
         .action-btn:hover {
@@ -202,7 +213,7 @@
         
         .modal-content {
             background: linear-gradient(135deg, #1a2a6c, #b21f1f);
-            padding: 30px;
+            padding: 25px;
             border-radius: 15px;
             width: 90%;
             max-width: 500px;
@@ -211,31 +222,34 @@
         }
         
         .modal h2 {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: #ffcc00;
+            font-size: 1.8rem;
         }
         
         .path-display {
             background: rgba(0, 0, 0, 0.5);
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
-            font-size: 1.5rem;
-            margin: 20px 0;
+            font-size: 1.2rem;
+            margin: 15px 0;
             word-break: break-all;
             color: #4dff4d;
             font-family: monospace;
-            min-height: 60px;
+            min-height: 50px;
+            overflow: auto;
+            max-height: 200px;
         }
         
         .modal-btns {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 15px;
         }
         
         .modal-btn {
-            padding: 10px 20px;
+            padding: 8px 18px;
             font-size: 16px;
             border: none;
             border-radius: 5px;
@@ -263,37 +277,31 @@
         
         .instructions {
             background: rgba(0, 0, 0, 0.5);
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
-            margin-top: 20px;
+            margin-top: 15px;
             text-align: left;
+            font-size: 0.9rem;
         }
         
         .instructions h3 {
             color: #ffcc00;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
         }
         
         .instructions ul {
-            padding-left: 20px;
+            padding-left: 18px;
         }
         
         .instructions li {
-            margin-bottom: 8px;
-            line-height: 1.5;
+            margin-bottom: 6px;
+            line-height: 1.4;
         }
         
         .highlight {
             color: #ffcc00;
             font-weight: bold;
-        }
-        
-        .debug {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: #ff9999;
-            font-size: 0.9rem;
         }
         
         /* 顶部提示条 */
@@ -302,11 +310,11 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 15px;
+            padding: 12px;
             background: rgba(231, 76, 60, 0.9);
             color: white;
             text-align: center;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: bold;
             z-index: 2000;
             transform: translateY(-100%);
@@ -321,11 +329,150 @@
         /* 键盘提示 */
         .keyboard-hint {
             background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
+            padding: 12px;
             border-radius: 10px;
             margin-top: 10px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #ffcc00;
+        }
+        
+        /* 移动端优化 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                border-radius: 15px;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+                margin-bottom: 10px;
+            }
+            
+            .step-counter {
+                font-size: 1.3rem;
+                margin: 10px 0;
+            }
+            
+            .board-container {
+                padding: 10px;
+                max-width: 90vw;
+            }
+            
+            .control-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 18px;
+            }
+            
+            .action-btn {
+                padding: 8px 15px;
+                font-size: 14px;
+                min-width: 80px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+            
+            .modal h2 {
+                font-size: 1.5rem;
+            }
+            
+            .path-display {
+                font-size: 1rem;
+                padding: 12px;
+            }
+            
+            .instructions {
+                padding: 12px;
+                font-size: 0.85rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.4rem;
+            }
+            
+            .control-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 16px;
+            }
+            
+            .action-btn {
+                padding: 7px 12px;
+                font-size: 13px;
+                min-width: 70px;
+            }
+            
+            .keyboard-hint {
+                font-size: 0.8rem;
+                padding: 8px;
+            }
+        }
+        
+        /* 触控方向按钮 */
+        .touch-controls {
+            display: none;
+            margin-top: 15px;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .touch-pad {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1/1;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 auto;
+        }
+        
+        .touch-direction {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(52, 152, 219, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .touch-up {
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .touch-down {
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .touch-left {
+            top: 50%;
+            left: 5%;
+            transform: translateY(-50%);
+        }
+        
+        .touch-right {
+            top: 50%;
+            right: 5%;
+            transform: translateY(-50%);
+        }
+        
+        @media (max-width: 768px) {
+            .touch-controls {
+                display: block;
+            }
         }
     </style>
 </head>
@@ -339,9 +486,9 @@
         <div class="step-counter">移动步数: <span id="step-count">0</span></div>
         
         <div class="board-container">
-            <table class="board" id="game-board">
+            <div class="board" id="game-board">
                 <!-- 7x7棋盘由JS动态生成 -->
-            </table>
+            </div>
         </div>
         
         <div class="controls">
@@ -413,11 +560,9 @@
                 board = [];
                 
                 for (let i = 0; i < boardSize; i++) {
-                    const row = document.createElement('tr');
-                    board[i] = [];
-                    
                     for (let j = 0; j < boardSize; j++) {
-                        const cell = document.createElement('td');
+                        const cell = document.createElement('div');
+                        cell.className = 'board-cell';
                         cell.dataset.row = i;
                         cell.dataset.col = j;
                         
@@ -429,17 +574,16 @@
                                 // 存储初始位置到历史记录
                                 moveHistory.push({row: i, col: j});
                                 // 移除所有单元格的点击事件
-                                document.querySelectorAll('.board td').forEach(cell => {
+                                document.querySelectorAll('.board-cell').forEach(cell => {
                                     cell.style.pointerEvents = 'none';
                                 });
+                                showTopAlert('小球已放置！请使用方向按钮移动');
                             }
                         });
                         
-                        row.appendChild(cell);
-                        board[i][j] = cell;
+                        boardElement.appendChild(cell);
+                        board.push(cell);
                     }
-                    
-                    boardElement.appendChild(row);
                 }
             }
             
@@ -449,7 +593,8 @@
                 
                 const ball = document.createElement('div');
                 ball.className = 'ball';
-                board[row][col].appendChild(ball);
+                const cellIndex = row * boardSize + col;
+                board[cellIndex].appendChild(ball);
             }
             
             // 移动小球
@@ -494,23 +639,23 @@
             // 更新棋盘显示
             function updateBoard() {
                 // 清除棋盘上的所有小球和轨迹
-                for (let i = 0; i < boardSize; i++) {
-                    for (let j = 0; j < boardSize; j++) {
-                        board[i][j].innerHTML = '';
-                    }
-                }
+                board.forEach(cell => {
+                    cell.innerHTML = '';
+                });
                 
                 // 显示上一步轨迹（如果有）
                 if (lastPosition) {
                     const trace = document.createElement('div');
                     trace.className = 'trace';
-                    board[lastPosition.row][lastPosition.col].appendChild(trace);
+                    const lastIndex = lastPosition.row * boardSize + lastPosition.col;
+                    board[lastIndex].appendChild(trace);
                 }
                 
                 // 显示当前位置小球
                 const ball = document.createElement('div');
                 ball.className = 'ball';
-                board[currentPosition.row][currentPosition.col].appendChild(ball);
+                const currentIndex = currentPosition.row * boardSize + currentPosition.col;
+                board[currentIndex].appendChild(ball);
             }
             
             // 方向到数字的转换
@@ -639,8 +784,15 @@
                 }
             });
             
+            // 移动端触控事件
+            document.getElementById('touch-up').addEventListener('click', () => moveBall('up'));
+            document.getElementById('touch-down').addEventListener('click', () => moveBall('down'));
+            document.getElementById('touch-left').addEventListener('click', () => moveBall('left'));
+            document.getElementById('touch-right').addEventListener('click', () => moveBall('right'));
+            
             // 初始化游戏
             initializeBoard();
+            showTopAlert('请点击棋盘放置初始小球');
         });
     </script>
 </body>
